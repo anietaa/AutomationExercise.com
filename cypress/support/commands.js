@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('addStylesheet', (id, css) => {
+    cy.document().then(document => {
+      const style = document.createElement('style');
+      style.id = id;
+      style.appendChild(document.createTextNode(css));
+      document.head.appendChild(style);
+    });
+  });
